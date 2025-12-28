@@ -1,0 +1,48 @@
+{
+  "manifest_version": 3,
+   "name": "CredStalker",
+   "version": "1.0.0",
+   "description": "Detects hardcoded tokens and secrets in JavaScript files - Automatic and Manual Mode with Discord Webhook",
+  "author": "manojxshrestha",
+  "permissions": [
+    "activeTab",
+    "scripting",
+    "storage",
+    "notifications",
+    "alarms",
+    "webRequest",
+    "proxy"
+  ],
+  "host_permissions": [
+    "<all_urls>"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
+  },
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content.js"],
+      "run_at": "document_idle"
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": ["detector.js", "validator.js", "deep-crawler.js", "bucket-takeover-detector.js", "token-scanner-worker.js"],
+      "matches": ["<all_urls>"]
+    }
+  ]
+}
